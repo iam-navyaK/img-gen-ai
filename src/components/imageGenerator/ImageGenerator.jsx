@@ -30,14 +30,8 @@ export const ImageGenerator = () => {
 
       console.log("API Response:", response.data); // Log the full response to inspect
 
-      // Check if response data has images
-      if (response.data && response.data.length > 0) {
-        // Set image URL from the API response (use .urls.regular for better quality)
-        setImage_url(response.data[0].urls.regular); // Or use .urls.small for smaller images
-      } else {
-        setError("No images found for your query.");
-        setImage_url(default_image); // Fallback to default image if no image found
-      }
+      // Set image URL from the API response (use .urls.regular for better quality)
+      setImage_url(response.data.urls.regular); // Correctly access the single object
     } catch (error) {
       console.error("Error fetching image:", error);
       setError("An error occurred while fetching the image.");
@@ -50,7 +44,7 @@ export const ImageGenerator = () => {
   return (
     <div className="ai-image-generator">
       <div className="header">
-        AI Image <span>Generator</span>
+        image <span>Generator</span>
       </div>
 
       <div className="img-loading">
